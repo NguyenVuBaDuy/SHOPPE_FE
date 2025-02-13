@@ -7,9 +7,9 @@ import ProductDetailPage from "./pages/normalUser/product/productDetailPage";
 import OrderHistoryPage from "./pages/normalUser/orderHistory/orderHistoryPage";
 import CheckoutPage from "./pages/normalUser/checkout/checkoutPage";
 import ProfilePage from "./pages/normalUser/profile/profilePage";
-import './styles/reset.css'
+import "./styles/reset.css";
 import LoginPage from "./pages/normalUser/login/loginPage";
-import RegisterPage from "./pages/normalUser/register/registerPage";
+import RegisterPage from "./pages/normalUser/register/RegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -18,48 +18,46 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />
+        element: <HomePage />,
       },
       {
         path: `/products`,
-        element: <Product />
+        element: <Product />,
       },
       {
         path: `/products/:category`,
-        element: <ProductByCategory />
+        element: <ProductByCategory />,
       },
       {
         path: `/products/:category/:id`,
-        element: <ProductDetailPage />
+        element: <ProductDetailPage />,
       },
       {
         path: `/checkout`,
-        element: <CheckoutPage />
+        element: <CheckoutPage />,
       },
       {
         path: `/user/purchase`,
-        element: <OrderHistoryPage />
+        element: <OrderHistoryPage />,
       },
       {
         path: `/user/profile`,
-        element: <ProfilePage />
+        element: <ProfilePage />,
       },
-    ]
+    ],
   },
   {
     path: `/login`,
-    element: <LoginPage />
+    element: <LoginPage />,
   },
   {
     path: `/register`,
-    element: <RegisterPage />
-  }
+    element: <RegisterPage />,
+  },
 ]);
 
 const App = () => {
-  return (
-    <RouterProvider router={router} />
-  )
-}
+  return <RouterProvider router={router} />;
+};
 
-export default App
+export default App;
