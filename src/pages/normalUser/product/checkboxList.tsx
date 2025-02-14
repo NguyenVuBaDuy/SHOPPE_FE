@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { DeleteOutlined, DownOutlined } from '@ant-design/icons';
-
+import { Slider } from 'antd';
     type CheckboxListProps = {
         items: {
         key: string;
@@ -94,6 +94,11 @@ const CheckboxList = ({ items }: CheckboxListProps) => {
                     </button>
             </div>
             {renderItems(items, '')}
+            <div className='pt-[30px]'>
+                <span>Price</span>
+                <Slider min={0} max={80000000} step={10000000} range={{ draggableTrack: true }} defaultValue={[0,80000000]} />
+            </div>
+            
         </div>
     );
 }
