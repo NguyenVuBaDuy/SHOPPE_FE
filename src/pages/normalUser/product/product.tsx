@@ -1,6 +1,6 @@
 import CheckboxList from './checkboxList';
-import { useState } from 'react';
-import { DeleteOutlined } from '@ant-design/icons';
+import ProductCard from './productCard';
+
 
 const Product = () => {
 
@@ -22,6 +22,11 @@ const Product = () => {
         label: 'Navigation One',
         children: [
         {
+          key: '4',
+          label: 'Option 4',
+          from: 'sub1',
+        },
+        {
           key: '5',
           label: 'Option 5',
           from: 'sub1',
@@ -36,17 +41,17 @@ const Product = () => {
           label: 'Option 7',
           from: 'sub1',
         },
-        {
-          key: '8',
-          label: 'Option 8',
-          from: 'sub1',
-        },
         ],
       },
       {
         key: 'sub2',
         label: 'Navigation Two',
         children: [
+        {
+          key: '8',
+          label: 'Option 8',
+          from: 'sub2',
+        },
         {
           key: '9',
           label: 'Option 9',
@@ -55,11 +60,6 @@ const Product = () => {
         {
           key: '10',
           label: 'Option 10',
-          from: 'sub2',
-        },
-        {
-          key: '11',
-          label: 'Submenu',
           from: 'sub2',
         },
         ],
@@ -80,7 +80,7 @@ const Product = () => {
         },
         {
           key: '13',
-          label: 'Submenu',
+          label: 'Option 13',
           from: 'sub3',
         },
         ],
@@ -91,43 +91,56 @@ const Product = () => {
         children: [
         {
           key: '14',
-          label: 'Option 13',
-          from: 'sub4',
-        },
-        {
-          key: '15',
           label: 'Option 14',
           from: 'sub4',
         },
         {
+          key: '15',
+          label: 'Option 15',
+          from: 'sub4',
+        },
+        {
           key: '16',
-          label: 'Submenu',
+          label: 'Option 16',
           from: 'sub4',
         },
         ],
       },
-      ];
-
-    const [removeChecks, setRemoveChecks] = useState<boolean>(false);
-    
-    const handleRemoveChecks = () => {
-      setRemoveChecks(!removeChecks);
-      console.log(removeChecks);
-    }
-
+    ];
 
     return (
-        <div className='w-full h-full flex p-[30px] bg-gray-100 gap-[10px]'>
-            <div className='min-w-[360px] h-full rounded-[0.25rem] bg-white p-[20px]'>
-                <div className="w-full h-[50px] flex justify-between items-center">
-                    <span className='text-[18px] font-bold font-serifs '>PRODUCT CATEGORIES</span>
-                    <button onClick={() => handleRemoveChecks()} className='w-[30px] h-[30px] flec items-center text-red rounded-[0.25rem] cursor-pointer hover:bg-gray-200 transition-transform duration-200'>
-                      <DeleteOutlined style={{color: 'gray', fontSize: '25px'}}/>
-                    </button>
-                </div>
-                <CheckboxList removeChecks={removeChecks} handleRemoveChecks={handleRemoveChecks} items={items}/>
+        <div className='w-full h-full flex justify-center p-[30px] bg-gray-100 gap-[10px]'>
+            <CheckboxList items={items}/>
+            <div className='w-fit h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 bg-white rounded-[0.5rem] '>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
+              <ProductCard/>
             </div>
-            <div className='w-full h-[580px] bg-white rounded-[0.25rem]'>Product Show</div>
         </div>
     )
 }

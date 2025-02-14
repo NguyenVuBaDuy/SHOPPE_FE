@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DownOutlined, UpOutlined } from '@ant-design/icons';
+import { DeleteOutlined, DownOutlined } from '@ant-design/icons';
 
     type CheckboxListProps = {
         items: {
@@ -11,11 +11,9 @@ import { DownOutlined, UpOutlined } from '@ant-design/icons';
             from?: string;
         }[];
         }[];
-        removeChecks?: boolean;
-        handleRemoveChecks?: () => void;
     };
 
-const CheckboxList = ({ items, removeChecks, handleRemoveChecks }: CheckboxListProps) => {
+const CheckboxList = ({ items }: CheckboxListProps) => {
     const itemsMap = new Map<string, {label: string, children?: string[], parent?: string}>();
     
     items.forEach((item) => {
@@ -32,18 +30,21 @@ const CheckboxList = ({ items, removeChecks, handleRemoveChecks }: CheckboxListP
 
     const handleCheck = (event: React.MouseEvent<HTMLInputElement>, key: string, from: string) => {
         setCheckedItems((prev) => {
-            const newCheckedItems = removeChecks ? {} :
-                {...prev, [key]: !prev[key]};
-                if (prev[from] !== undefined && !prev[from]) {
-                    newCheckedItems[from] = true;
-                }
-                if (itemsMap.get(key)?.children && !newCheckedItems[key]) {
-                    itemsMap.get(key)?.children?.forEach((child) => {
-                        newCheckedItems[child] = false;
-                    })
+            const newCheckedItems = {...prev, [key]: !prev[key]};
+            if (!prev[from]) {
+                newCheckedItems[from] = true;
+            }
+            if (itemsMap.get(key)?.children && !newCheckedItems[key]) {
+                itemsMap.get(key)?.children?.forEach((child) => {
+                    newCheckedItems[child] = false;
+                })
             }
             return newCheckedItems;
         });
+    }
+
+    const handleRemoveChecks = () => {
+        setCheckedItems({});
     }
 
     const handleToggleExpand = (key: string) => {
@@ -73,7 +74,7 @@ const CheckboxList = ({ items, removeChecks, handleRemoveChecks }: CheckboxListP
                                             handleToggleExpand(item.key)
                                             event.stopPropagation()
                                         }}>
-                                    <UpOutlined style={{color: 'oklch(0.685 0.169 237.323)'}}/>
+                                    <DownOutlined style={{color: 'oklch(0.685 0.169 237.323)'}}/>
                                 </button> : null}
                             </label>
                             {item.children && renderItems(item.children, `pl-[40px] overflow-hidden transition-all duration-200 ease-in-out ${toggleExpand[item.key] ? 'max-h-[1000px] h-fit' : 'max-h-0'}`)}
@@ -85,7 +86,13 @@ const CheckboxList = ({ items, removeChecks, handleRemoveChecks }: CheckboxListP
     }
 
     return (
-        <div>
+        <div className='min-w-[360px] h-full rounded-[0.25rem] bg-white p-[20px]'>
+            <div className="w-full h-[50px] flex justify-between items-center">
+                    <span className='text-[18px] font-bold font-serifs '>PRODUCT CATEGORIES</span>
+                    <button onClick={handleRemoveChecks} className='w-[30px] h-[30px] flec items-center text-red rounded-[0.25rem] cursor-pointer hover:bg-gray-200 transition-transform duration-200'>
+                        <DeleteOutlined style={{color: 'gray', fontSize: '25px'}}/>
+                    </button>
+            </div>
             {renderItems(items, '')}
         </div>
     );
