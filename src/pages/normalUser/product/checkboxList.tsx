@@ -61,7 +61,7 @@ const CheckboxList = ({ items }: CheckboxListProps) => {
                         <li key={item.key} className='flex flex-col'>
                             <label className={`w-full h-[30px] flex items-center rounded-[0.25rem] cursor-pointer pl-[5px] pr-[5px]`}>
                                 <input  type="checkbox"
-                                        onClick={(event) => handleCheck(event, item.key, item.from)} 
+                                        onChange={(event) => handleCheck(event, item.key, item.from)} 
                                         checked={checkedItems[item.key] || false}
                                         className={`appearance-none min-w-4 min-h-4 border-1 border-sky-500 rounded-[0.25rem] transition-all cursor-pointer
                                             ${checkedItems[item.key] ? 'bg-sky-500' : 'border-gray-400 bg-white'}
