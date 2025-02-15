@@ -11,27 +11,29 @@ import {
 } from "antd";
 import "./LoginForm.css";
 import { FcGoogle } from "react-icons/fc";
-import { FieldType } from "./FieldTypeForm";
-import { registerAPI } from "../../../services/authAPI";
+
+import { loginAPI, registerAPI } from "../../../services/authAPI";
 import { HTTP_STATUS } from "../../../constants/httpStatus";
 import { RegisterPayload } from "../../../types/req/auth/ResgisterPayload";
 import { DataRes } from "../../../types/res/DataRes";
 import { ErrorRes } from "../../../types/res/ErrorRes";
 import { useForm } from "antd/es/form/Form";
 import { Link, useNavigate } from "react-router-dom";
+import { getGoogleAuthURL } from "../../../utils/googleUtils";
 
 export default function LoginForm() {
   const [form] = useForm();
   const navigate = useNavigate();
+  const googleUrl = getGoogleAuthURL();
 
   const onFinish: FormProps<RegisterPayload>["onFinish"] = async (values) => {
-    const response = (await registerAPI(values)).data;
+    const response = (await loginAPI(values)).data;
     if (response?.status == HTTP_STATUS.OK) {
       notification.success({
         message: (response as DataRes)?.message,
       });
       form.resetFields();
-      navigate("/login");
+      navigate("/");
     } else if (response?.status) {
       notification.error({
         message: (response as ErrorRes)?.message,
@@ -49,28 +51,27 @@ export default function LoginForm() {
       <Form
         form={form}
         name="register-form"
-        labelCol={{ span: 12 }}
+        labelCol={{ span: 15 }}
         style={{ maxWidth: 600 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
         autoComplete="off"
         layout="vertical"
       >
-        <Form.Item label="Username or email address">
-          <Form.Item<FieldType>
-            name="username"
-            rules={[
-              {
-                required: true,
-                message: "Please input your username or email!",
-              },
-            ]}
-          >
-            <Input placeholder="Email" />
-          </Form.Item>
+        <Form.Item
+          name="username"
+          label="Username or email address"
+          rules={[
+            {
+              required: true,
+              message: "Please input your username or email!",
+            },
+          ]}
+        >
+          <Input placeholder="Email" />
         </Form.Item>
 
-        <Form.Item<FieldType>
+        <Form.Item
           label="Password"
           name="password"
           rules={[
@@ -107,14 +108,20 @@ export default function LoginForm() {
           Login
         </Button>
       </Form>
-      <Divider style={{ marginBlock: "0px", color: "#808080" }}>OR</Divider>
+      <Divider
+        style={{ marginBlock: "0px", color: "#808080", paddingTop: "20px" }}
+      >
+        OR
+      </Divider>
       <div style={{ width: "80%", paddingBottom: "30px" }}>
-        <Button className="google-btn">
-          <span className="google-icon">
-            <FcGoogle fontSize={30} />
-          </span>
-          <span>Continue with google</span>
-        </Button>
+        <Link to={googleUrl}>
+          <Button className="google-btn">
+            <span className="google-icon">
+              <FcGoogle fontSize={30} />
+            </span>
+            <span>Continue with google</span>
+          </Button>
+        </Link>
       </div>
     </div>
   );

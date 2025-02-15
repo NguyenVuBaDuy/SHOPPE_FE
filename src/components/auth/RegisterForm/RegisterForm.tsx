@@ -10,7 +10,6 @@ import {
 } from "antd";
 import "./RegisterForm.css";
 import { FcGoogle } from "react-icons/fc";
-import { FieldType } from "./FieldTypeForm";
 import { registerAPI } from "../../../services/authAPI";
 import { HTTP_STATUS } from "../../../constants/httpStatus";
 import { RegisterPayload } from "../../../types/req/auth/ResgisterPayload";
@@ -18,10 +17,14 @@ import { DataRes } from "../../../types/res/DataRes";
 import { ErrorRes } from "../../../types/res/ErrorRes";
 import { useForm } from "antd/es/form/Form";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { getGoogleAuthURL } from "../../../utils/googleUtils";
 
 export default function RegisterForm() {
   const [form] = useForm();
   const navigate = useNavigate();
+
+  const googleUrl = getGoogleAuthURL();
 
   const onFinish: FormProps<RegisterPayload>["onFinish"] = async (values) => {
     const response = (await registerAPI(values)).data;
@@ -55,39 +58,37 @@ export default function RegisterForm() {
         autoComplete="off"
         layout="vertical"
       >
-        <Form.Item label="Email">
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item<FieldType>
-                name="email"
-                rules={[
-                  { required: true, message: "Please input your email!" },
-                ]}
-              >
-                <Input placeholder="Email" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item<FieldType>
-                name="username"
-                rules={[
-                  { required: true, message: "Please input your username!" },
-                  {
-                    pattern: /[a-zA-z]/,
-                    message: "Username must contain at least 1 letter",
-                  },
-                  {
-                    min: 4,
-                    message: "Username must contain at least 4 characters",
-                  },
-                ]}
-              >
-                <Input placeholder="Username" />
-              </Form.Item>
-            </Col>
-          </Row>
-        </Form.Item>
-        <Form.Item<FieldType>
+        <Row gutter={16}>
+          <Col span={12}>
+            <Form.Item
+              label="Email"
+              name="email"
+              rules={[{ required: true, message: "Please input your email!" }]}
+            >
+              <Input placeholder="Email" />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              name="username"
+              label="Username"
+              rules={[
+                { required: true, message: "Please input your username!" },
+                {
+                  pattern: /[a-zA-z]/,
+                  message: "Username must contain at least 1 letter",
+                },
+                {
+                  min: 4,
+                  message: "Username must contain at least 4 characters",
+                },
+              ]}
+            >
+              <Input placeholder="Username" />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Form.Item
           label="Full Name"
           name="fullName"
           rules={[
@@ -105,7 +106,7 @@ export default function RegisterForm() {
           <Input placeholder="Fullname" />
         </Form.Item>
 
-        <Form.Item<FieldType>
+        <Form.Item
           label="Password"
           name="password"
           rules={[
@@ -119,7 +120,7 @@ export default function RegisterForm() {
         >
           <Input.Password />
         </Form.Item>
-        <Form.Item<FieldType>
+        <Form.Item
           label="Confirm password"
           name="confirmPassword"
           rules={[
@@ -145,14 +146,20 @@ export default function RegisterForm() {
           Register
         </Button>
       </Form>
-      <Divider style={{ marginBlock: "0px", color: "#808080" }}>OR</Divider>
+      <Divider
+        style={{ marginBlock: "0px", color: "#808080", paddingTop: "20px" }}
+      >
+        OR
+      </Divider>
       <div style={{ width: "80%", paddingBottom: "30px" }}>
-        <Button className="google-btn">
-          <span className="google-icon">
-            <FcGoogle fontSize={30} />
-          </span>
-          <span>Continue with google</span>
-        </Button>
+        <Link to={googleUrl}>
+          <Button className="google-btn">
+            <span className="google-icon">
+              <FcGoogle fontSize={30} />
+            </span>
+            <span>Continue with google</span>
+          </Button>
+        </Link>
       </div>
     </div>
   );
