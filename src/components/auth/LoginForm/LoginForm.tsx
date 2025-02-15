@@ -1,5 +1,6 @@
 import {
   Button,
+  Checkbox,
   Col,
   Divider,
   Form,
@@ -8,7 +9,7 @@ import {
   notification,
   Row,
 } from "antd";
-import "./RegisterForm.css";
+import "./LoginForm.css";
 import { FcGoogle } from "react-icons/fc";
 import { FieldType } from "./FieldTypeForm";
 import { registerAPI } from "../../../services/authAPI";
@@ -19,7 +20,7 @@ import { ErrorRes } from "../../../types/res/ErrorRes";
 import { useForm } from "antd/es/form/Form";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function RegisterForm() {
+export default function LoginForm() {
   const [form] = useForm();
   const navigate = useNavigate();
 
@@ -40,10 +41,10 @@ export default function RegisterForm() {
   return (
     <div className="register-container">
       <div className="title">
+        <span>Login</span>
         <span className="disable-title">
-          <Link to={"/login"}>Login</Link>
+          <Link to={"/register"}>Register</Link>
         </span>
-        <span>Register</span>
       </div>
       <Form
         form={form}
@@ -55,54 +56,18 @@ export default function RegisterForm() {
         autoComplete="off"
         layout="vertical"
       >
-        <Form.Item label="Email">
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item<FieldType>
-                name="email"
-                rules={[
-                  { required: true, message: "Please input your email!" },
-                ]}
-              >
-                <Input placeholder="Email" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item<FieldType>
-                name="username"
-                rules={[
-                  { required: true, message: "Please input your username!" },
-                  {
-                    pattern: /[a-zA-z]/,
-                    message: "Username must contain at least 1 letter",
-                  },
-                  {
-                    min: 4,
-                    message: "Username must contain at least 4 characters",
-                  },
-                ]}
-              >
-                <Input placeholder="Username" />
-              </Form.Item>
-            </Col>
-          </Row>
-        </Form.Item>
-        <Form.Item<FieldType>
-          label="Full Name"
-          name="fullName"
-          rules={[
-            { required: true, message: "Please input your full name!" },
-            {
-              pattern: /[a-zA-z]/,
-              message: "Full name must contain at least 1 letter",
-            },
-            {
-              min: 4,
-              message: "Full name must contain at least 4 characters",
-            },
-          ]}
-        >
-          <Input placeholder="Fullname" />
+        <Form.Item label="Username or email address">
+          <Form.Item<FieldType>
+            name="username"
+            rules={[
+              {
+                required: true,
+                message: "Please input your username or email!",
+              },
+            ]}
+          >
+            <Input placeholder="Email" />
+          </Form.Item>
         </Form.Item>
 
         <Form.Item<FieldType>
@@ -119,30 +84,27 @@ export default function RegisterForm() {
         >
           <Input.Password />
         </Form.Item>
-        <Form.Item<FieldType>
-          label="Confirm password"
-          name="confirmPassword"
-          rules={[
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue("password") === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(new Error("Passwords do not match!"));
-              },
-            }),
-          ]}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
         >
-          <Input.Password />
-        </Form.Item>
-
+          <Form.Item name="remember" valuePropName="checked" noStyle>
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
+          <a href="mail" style={{ color: "#69b8fd" }}>
+            Forgot password
+          </a>
+        </div>
         <Button
           className="register-btn"
           htmlType="submit"
           type="primary"
           style={{ backgroundColor: "#233a95" }}
         >
-          Register
+          Login
         </Button>
       </Form>
       <Divider style={{ marginBlock: "0px", color: "#808080" }}>OR</Divider>
