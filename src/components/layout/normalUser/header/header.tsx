@@ -188,7 +188,7 @@ const Header = () => {
                     <span className="cursor-pointer">Order Tracking</span>
                 </div>
                 <div className="flex">
-                    <img src={iconHandSecure} alt="" className="w-[20px] h-[20px]" />
+                    <img src={iconHandSecure} alt="" className="w-[20px] h-[20px] mr-[5px]" />
                     <span>100% Secure delivery without contacting the courier</span>
                 </div>
                 <div className="flex">
