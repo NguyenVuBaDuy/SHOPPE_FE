@@ -83,7 +83,7 @@ export default function LoginForm() {
             },
           ]}
         >
-          <Input.Password />
+          <Input.Password placeholder="Enter your password" />
         </Form.Item>
         <div
           style={{

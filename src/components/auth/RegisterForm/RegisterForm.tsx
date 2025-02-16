@@ -65,7 +65,7 @@ export default function RegisterForm() {
               name="email"
               rules={[{ required: true, message: "Please input your email!" }]}
             >
-              <Input placeholder="Email" />
+              <Input placeholder="Enter your email" />
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -84,7 +84,7 @@ export default function RegisterForm() {
                 },
               ]}
             >
-              <Input placeholder="Username" />
+              <Input placeholder="Enter your username" />
             </Form.Item>
           </Col>
         </Row>
@@ -103,7 +103,7 @@ export default function RegisterForm() {
             },
           ]}
         >
-          <Input placeholder="Fullname" />
+          <Input placeholder="Enter your fullname" />
         </Form.Item>
 
         <Form.Item
@@ -118,7 +118,7 @@ export default function RegisterForm() {
             },
           ]}
         >
-          <Input.Password />
+          <Input.Password placeholder="Enter your password" />
         </Form.Item>
         <Form.Item
           label="Confirm password"
@@ -134,7 +134,7 @@ export default function RegisterForm() {
             }),
           ]}
         >
-          <Input.Password />
+          <Input.Password placeholder="Enter your confirm password" />
         </Form.Item>
 
         <Button
