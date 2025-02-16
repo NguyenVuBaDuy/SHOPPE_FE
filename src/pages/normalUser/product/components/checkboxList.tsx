@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { DeleteOutlined, DownOutlined } from '@ant-design/icons';
 import { Slider } from 'antd';
-    type CheckboxListProps = {
-        items: {
+type CheckboxListProps = {
+    items: {
         key: string;
         label: string;
         children?: {
@@ -10,8 +10,8 @@ import { Slider } from 'antd';
             label: string;
             from?: string;
         }[];
-        }[];
-    };
+    }[];
+};
 
 const CheckboxList = ({ items }: CheckboxListProps) => {
     const itemsMap = new Map<string, {label: string, children?: string[], parent?: string}>();
