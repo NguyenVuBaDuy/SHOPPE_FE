@@ -8,7 +8,7 @@ import OrderHistoryPage from "./pages/normalUser/orderHistory/orderHistoryPage";
 import CheckoutPage from "./pages/normalUser/checkout/checkoutPage";
 import ProfilePage from "./pages/normalUser/profile/profilePage";
 import "./styles/reset.css";
-import LoginPage from "./pages/normalUser/login/loginPage";
+import LoginPage from "./pages/normalUser/login/LoginPage";
 import RegisterPage from "./pages/normalUser/register/RegisterPage";
 
 const router = createBrowserRouter([

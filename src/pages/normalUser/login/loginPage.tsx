@@ -1,6 +1,6 @@
 import LoginForm from "../../../components/auth/LoginForm/LoginForm";
 
-const RegisterPage = () => {
+const LoginPage = () => {
   return (
     <div
       style={{
@@ -8,7 +8,7 @@ const RegisterPage = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
-        backgroundColor: "#f0f2f5",
+        backgroundColor: "#262830",
       }}
     >
       <LoginForm />
@@ -16,4 +16,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default LoginPage;
