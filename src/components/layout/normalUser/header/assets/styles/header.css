@@ -1,0 +1,39 @@
+.custom-input {
+    height: 100%;
+    background-color: #F3F4F7;
+    border: none;
+    border-radius: 8px;
+    padding-left: 15px;
+}
+
+.custom-input input {
+    background-color: #F3F4F7 !important;
+    font-size: 16px;
+    height: 100% !important;
+}
+
+.custom-input .ant-input-affix-wrapper-focused {
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.custom-input input::placeholder {
+    font-family: "Poppins", serif;
+    font-size: 16px;
+    color: #9595A9;
+}
+
+.space .ant-space-item {
+    display: flex;
+    align-items: center;
+}
+
+.custom-header-category-active {
+    background-color: #F0FAFF;
+    color: #2BBEF9 !important;
+}
+
+.custom-header-category-hover:hover {
+    background-color: #F0FAFF;
+    color: #2BBEF9 !important;
+}
