@@ -7,9 +7,9 @@ import ProductDetailPage from "./pages/normalUser/product/productDetailPage";
 import OrderHistoryPage from "./pages/normalUser/orderHistory/orderHistoryPage";
 import CheckoutPage from "./pages/normalUser/checkout/checkoutPage";
 import ProfilePage from "./pages/normalUser/profile/profilePage";
-import "./styles/reset.css";
 import LoginPage from "./pages/normalUser/login/loginPage";
-import RegisterPage from "./pages/normalUser/register/RegisterPage";
+import RegisterPage from "./pages/normalUser/register/registerPage";
+import Cart from "./pages/normalUser/cart/cartPage";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: `/user/profile`,
         element: <ProfilePage />,
+      },
+      {
+        path: `/user/cart`,
+        element: <Cart />,
       },
     ],
   },
