@@ -2,16 +2,18 @@ import LoginForm from "../../../components/auth/LoginForm/LoginForm";
 
 const LoginPage = () => {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        backgroundColor: "#262830",
-      }}
-    >
-      <LoginForm />
+    <div style={{ height: "100vh", overflow: "hidden" }}>
+      <div
+        style={{
+          display: "grid",
+          placeItems: "center",
+          height: "100%",
+          backgroundColor: "#262830",
+          overflowY: "auto"
+        }}
+      >
+        <LoginForm />
+      </div>
     </div>
   );
 };
