@@ -5,7 +5,7 @@ import { IoFastFoodOutline } from "react-icons/io5";
 
 const contentStyle: React.CSSProperties = {
   margin: 0,
-  height: "260px",
+  height: "360px",
   color: "#fff",
   lineHeight: "260px",
   textAlign: "center",
@@ -14,7 +14,7 @@ const contentStyle: React.CSSProperties = {
 
 const ProductDetailPage = () => {
   return (
-    <div>
+    <div className="w-full bg-slate-100">
       <div>
         <Breadcrumb separator=">">
           <Breadcrumb.Item className="text-gray-900 font-bold">
@@ -55,7 +55,17 @@ const ProductDetailPage = () => {
               </div>
             </div>
             <div className="grid grid-cols-[minmax(300px,4fr)_4fr_3fr] gap-5 mt-5">
-              <div className="px-2 py-4">
+              <div className="px-2 py-4 relative">
+                <div className="absolute top-5 left-2 z-10 p-2 rounded-lg">
+                  <div className="flex flex-col gap-2">
+                    <div className="rounded-md bg-emerald-600 px-2 w-fit text-white">
+                      -50%
+                    </div>
+                    <div className="rounded-md bg-emerald-600 px-8 w-fit text-white">
+                      Tag
+                    </div>
+                  </div>
+                </div>
                 <Carousel>
                   <div>
                     <h3 style={contentStyle}>1</h3>
@@ -186,6 +196,35 @@ const ProductDetailPage = () => {
                 </Card>
               </div>
             </div>
+          </div>
+        </Card>
+      </div>
+      <div className="flex justify-center items-center mt-10">
+        <Card className="w-7/8">
+          <div className="flex gap-4">
+            <h1 className="text-xl font-bold">Description</h1>
+            <h1 className="text-xl font-bold text-gray-300">Description</h1>
+            <h1 className="text-xl font-bold text-gray-300">Review (1)</h1>
+          </div>
+          <Divider className="w-full" />
+          <div className="px-2">
+            Quisque varius diam vel metus mattis, id aliquam diam rhoncus. Proin
+            vitae magna in dui finibus malesuada et at nulla. Morbi elit ex,
+            viverra vitae ante vel, blandit feugiat ligula. Fusce fermentum
+            iaculis nibh, at sodales leo maximus a. Nullam ultricies sodales
+            nunc, in pellentesque lorem mattis quis. Cras imperdiet est in nunc
+            tristique lacinia. Nullam aliquam mauris eu accumsan tincidunt.
+            Suspendisse velit ex, aliquet vel ornare vel, dignissim a tortor.
+            <br />
+            Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat
+            auctor, eleifend nunc a, lobortis neque. Praesent aliquam dignissim
+            viverra. Maecenas lacus odio, feugiat eu nunc sit amet, maximus
+            sagittis dolor. Vivamus nisi sapien, elementum sit amet eros sit
+            amet, ultricies cursus ipsum. Sed consequat luctus ligula. Curabitur
+            laoreet rhoncus blandit. Aenean vel diam ut arcu pharetra dignissim
+            ut sed leo. Vivamus faucibus, ipsum in vestibulum vulputate, lorem
+            orci convallis quam, sit amet consequat nulla felis pharetra lacus.
+            Duis semper erat mauris, sed egestas purus commodo vel.
           </div>
         </Card>
       </div>
