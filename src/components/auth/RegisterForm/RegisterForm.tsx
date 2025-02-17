@@ -58,36 +58,33 @@ export default function RegisterForm() {
         autoComplete="off"
         layout="vertical"
       >
-        <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[{ required: true, message: "Please input your email!" }]}
-            >
-              <Input placeholder="Email" />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              name="username"
-              label="Username"
-              rules={[
-                { required: true, message: "Please input your username!" },
-                {
-                  pattern: /[a-zA-z]/,
-                  message: "Username must contain at least 1 letter",
-                },
-                {
-                  min: 4,
-                  message: "Username must contain at least 4 characters",
-                },
-              ]}
-            >
-              <Input placeholder="Username" />
-            </Form.Item>
-          </Col>
-        </Row>
+
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[{ required: true, message: "Please input your email!" }]}
+        >
+          <Input placeholder="Enter your email" />
+        </Form.Item>
+
+        <Form.Item
+          name="username"
+          label="Username"
+          rules={[
+            { required: true, message: "Please input your username!" },
+            {
+              pattern: /[a-zA-z]/,
+              message: "Username must contain at least 1 letter",
+            },
+            {
+              min: 4,
+              message: "Username must contain at least 4 characters",
+            },
+          ]}
+        >
+          <Input placeholder="Enter your username" />
+        </Form.Item>
+
         <Form.Item
           label="Full Name"
           name="fullName"
@@ -103,7 +100,7 @@ export default function RegisterForm() {
             },
           ]}
         >
-          <Input placeholder="Fullname" />
+          <Input placeholder="Enter your fullname" />
         </Form.Item>
 
         <Form.Item
@@ -118,7 +115,7 @@ export default function RegisterForm() {
             },
           ]}
         >
-          <Input.Password />
+          <Input.Password placeholder="Enter your password" />
         </Form.Item>
         <Form.Item
           label="Confirm password"
@@ -134,7 +131,7 @@ export default function RegisterForm() {
             }),
           ]}
         >
-          <Input.Password />
+          <Input.Password placeholder="Enter your confirm password" />
         </Form.Item>
 
         <Button
@@ -154,10 +151,8 @@ export default function RegisterForm() {
       <div style={{ width: "80%", paddingBottom: "30px" }}>
         <Link to={googleUrl}>
           <Button className="google-btn">
-            <span className="google-icon">
-              <FcGoogle fontSize={30} />
-            </span>
-            <span>Continue with google</span>
+            <FcGoogle fontSize={30} />
+            <span style={{ marginLeft: "8px" }}>Continue with google</span>
           </Button>
         </Link>
       </div>

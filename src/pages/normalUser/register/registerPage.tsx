@@ -2,16 +2,18 @@ import RegisterForm from "../../../components/auth/RegisterForm/RegisterForm";
 
 const RegisterPage = () => {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        backgroundColor: "#f0f2f5",
-      }}
-    >
-      <RegisterForm />
+    <div style={{ height: "100vh", overflow: "hidden" }}>
+      <div
+        style={{
+          display: "grid",
+          placeItems: "center",
+          height: "100%",
+          backgroundColor: "#262830",
+          overflowY: "auto"
+        }}
+      >
+        <RegisterForm />
+      </div>
     </div>
   );
 };

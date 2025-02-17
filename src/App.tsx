@@ -10,6 +10,7 @@ import ProfilePage from "./pages/normalUser/profile/profilePage";
 import LoginPage from "./pages/normalUser/login/loginPage";
 import RegisterPage from "./pages/normalUser/register/registerPage";
 
+
 const router = createBrowserRouter([
   {
     path: `/`,
