@@ -1,23 +1,14 @@
-import { Table } from "antd";
-import type { TableColumnsType, TableProps } from "antd";
 import ProductsCartList from "./productsCartList";
+import Bill from "./bill";
+import { faCreditCard, faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import { useReducer } from "react";
-import { DataType, StateType, ActionType } from "./types";
-const columns: TableColumnsType<DataType> = [
-    {
-        title: "Name",
-        dataIndex: "name",
-        render: (text: string) => <a>{text}</a>,
-    },
-    {
-        title: "Age",
-        dataIndex: "age",
-    },
-    {
-        title: "Address",
-        dataIndex: "address",
-    },
-];
+import {
+    DataType,
+    StateType,
+    ActionType,
+    ShippingMethodType,
+    PaymentMethodType,
+} from "./types";
 
 const data: DataType[] = [
     {
@@ -76,10 +67,40 @@ const data: DataType[] = [
     },
 ];
 
+const shipMethod: ShippingMethodType[] = [
+    {
+        id: "1",
+        name: "Tiết kiệm",
+    },
+    {
+        id: "2",
+        name: "Nhanh",
+    },
+    {
+        id: "3",
+        name: "Hỏa tốc",
+    }
+];
+
+const payMethod: PaymentMethodType[] = [
+    {
+        id: "1",
+        type: faMoneyBill,
+        name: "Thanh toán khi nhận hàng",
+    },
+    {
+        id: "2",
+        type: faCreditCard,
+        name: "Chuyển khoản",
+    },
+];
+
 const initialState: StateType = {
     selectAll: false,
     selectedItems: [],
     products: data,
+    shippingMethod: shipMethod[1],
+    paymentMethod: payMethod[1],
 };
 
 const reducer = (state: typeof initialState, action: ActionType) => {
@@ -115,7 +136,7 @@ const reducer = (state: typeof initialState, action: ActionType) => {
                     : state.products.map((item) => item),
             };
         case "DELETE_ITEM":
-            console.log(state.products)
+            console.log(state.products);
             return {
                 ...state,
                 selectedItems: state.selectedItems.filter(
@@ -138,42 +159,29 @@ const reducer = (state: typeof initialState, action: ActionType) => {
                     return item;
                 }),
             };
-        default: {  
+        case "UPDATE_PAYMENT_METHOD":
+            return {
+                ...state,
+                paymentMethod: action.payload,
+            };
+        case "UPDATE_SHIPPING_METHOD":
+            return {
+                ...state,
+                shippingMethod: action.payload,
+            };
+        default: {
             return state;
         }
     }
 };
 
-
-
 const Cart = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     return (
-        <div className="flex h-full items-center justify-center gap-[20px] bg-[#F2F5FF] pt-[30px] pb-[30px] ">
+        <div className="flex h-full justify-center gap-[20px] bg-[#F2F5FF] pt-[30px] pb-[30px] ">
             <ProductsCartList state={state} dispatch={dispatch} />
-            <div className="w-[400px] h-[600px] rounded-[0.5rem] p-[20px] shadow-md  bg-white">
-                <h2 className="text-[25px] font-bold text-gray-800">
-                    CART TOTAL
-                </h2>
-                <div className="h-fit flex flex-col items-center justify-center border-t-[2px] border-b-[2px] border-[#E5E5E5]">
-                    {state.selectedItems.map((item,key) => {
-                        return (
-                            <div className="h-[50px] w-full flex items-center justify-center" key={key}>
-                                <span className="w-[160px]">
-                                    {item.name}
-                                </span>
-                                <span className="w-[70px] flex items-center justify-center">
-                                    {item.quantity}
-                                </span>
-                                <span className="w-[130px] text-end">
-                                    {item.price * item.quantity}
-                                </span>
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
+            <Bill state={state} dispatch={dispatch} payMethod={payMethod} shipMethod={shipMethod}/>
         </div>
     );
 };

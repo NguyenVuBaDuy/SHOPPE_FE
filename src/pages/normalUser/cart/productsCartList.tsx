@@ -1,6 +1,5 @@
-import { InputNumber } from "antd";
-import { DataType, StateType, ActionType } from "./types";
-import ProductCard from "./ProductCard";
+import { StateType, ActionType } from "./types";
+import ProductCard from "./productCard";
 
 const ProductsCartList = ({ state, dispatch }: { state: StateType; dispatch: React.Dispatch<ActionType>}) => {
     return (

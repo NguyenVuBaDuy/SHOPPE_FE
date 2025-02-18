@@ -74,7 +74,7 @@ const ProductCard = ({
                 {item.price * item.quantity}
             </td>
             <td className="text-gray-400 text-left align-middle pl-[10px] w-[30px]">
-                <div className="w-[30px] h-[30px] flex items-center justify-center bg-gray-200 rounded-md hover:bg-red-200 hover:text-red-500 cursor-pointer">
+                <div className="w-[30px] h-[30px] flex items-center justify-center bg-gray-200 rounded-md hover:bg-red-200 hover:text-red-500 cursor-pointer transition-all duration-200">  
                     <DeleteOutlined
                         className="w-full h-full flex items-center justify-center cursor-pointer"
                         onClick={() => {
