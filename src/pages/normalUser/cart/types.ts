@@ -7,7 +7,7 @@ export type DataType = {
 
 export type StateType = {
     selectAll: boolean;
-    selectedItems: string[];
+    selectedItems: DataType[];
     products: DataType[];
 };
 

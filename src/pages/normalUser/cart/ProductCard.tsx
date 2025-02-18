@@ -12,12 +12,15 @@ const ProductCard = ({
     state: StateType;
     dispatch: React.Dispatch<ActionType>;
 }) => {
-    const [quantity, setQuantity] = useState(item.quantity);
+    
 
     const handleQuantityChange = (value: number | null) => {
         if (value !== null) {
             item.quantity = value;
-            setQuantity(value);
+            dispatch({
+                type: "UPDATE_QUANTITY",
+                payload: value,
+            });
         }
     };
 
@@ -28,16 +31,17 @@ const ProductCard = ({
                     <input
                         type="checkbox"
                         className="w-4 h-4 appearance-none border-[2px] border-gray-200 rounded-sm hover:border-blue-300 cursor-pointer checked:bg-blue-300 checked:border-blue-300 transition-all duration-200"
-                        checked={state.selectedItems.includes(item.id)}
+                        checked={state.selectedItems.includes(item)}
                         onChange={() => {
-                            state.selectedItems.includes(item.id)
+                            console.log(state.selectedItems)
+                            state.selectedItems.includes(item)
                                 ? dispatch({
                                       type: "REMOVE_ITEM",
-                                      payload: item.id,
+                                      payload: item,
                                   })
                                 : dispatch({
                                       type: "SELECT_ITEM",
-                                      payload: item.id,
+                                      payload: item,
                                   });
                         }}
                     />
@@ -62,12 +66,12 @@ const ProductCard = ({
                 <InputNumber
                     min={1}
                     max={100}
-                    defaultValue={quantity}
+                    value={item.quantity}
                     onChange={handleQuantityChange}
                 />
             </td>
             <td className="text-gray-700 font-normal pl-[10px] overflow-hidden ">
-                {item.price * quantity}
+                {item.price * item.quantity}
             </td>
             <td className="text-gray-400 text-left align-middle pl-[10px] w-[30px]">
                 <div className="w-[30px] h-[30px] flex items-center justify-center bg-gray-200 rounded-md hover:bg-red-200 hover:text-red-500 cursor-pointer">
@@ -77,7 +81,7 @@ const ProductCard = ({
                             console.log(state.selectedItems)
                             dispatch({
                                 type: "DELETE_ITEM",
-                                payload: item.id,
+                                payload: item,
                             });
                         }}
                     />
