@@ -18,52 +18,51 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />
+        element: <HomePage />,
       },
       {
         path: `/products`,
-        element: <Product />
+        element: <Product />,
       },
       {
         path: `/products/:category`,
-        element: <ProductByCategory />
+        element: <ProductByCategory />,
       },
       {
         path: `/products/:category/:id`,
-        element: <ProductDetailPage />
+        element: <ProductDetailPage />,
       },
       {
         path: `/checkout`,
-        element: <CheckoutPage />
+        element: <CheckoutPage />,
       },
       {
         path: `/user/purchase`,
-        element: <OrderHistoryPage />
+        element: <OrderHistoryPage />,
       },
       {
         path: `/user/profile`,
-        element: <ProfilePage />
+        element: <ProfilePage />,
       },
       {
         path: `/user/cart`,
         element: <Cart />
       },
     ]
+
   },
   {
     path: `/login`,
-    element: <LoginPage />
+    element: <LoginPage />,
   },
   {
     path: `/register`,
-    element: <RegisterPage />
-  }
+    element: <RegisterPage />,
+  },
 ]);
 
 const App = () => {
-  return (
-    <RouterProvider router={router} />
-  )
-}
+  return <RouterProvider router={router} />;
+};
 
-export default App
+export default App;
