@@ -9,6 +9,7 @@ import CheckoutPage from "./pages/normalUser/checkout/checkoutPage";
 import ProfilePage from "./pages/normalUser/profile/profilePage";
 import LoginPage from "./pages/normalUser/login/loginPage";
 import RegisterPage from "./pages/normalUser/register/registerPage";
+import Cart from "./pages/normalUser/cart/cart";
 
 import Cart from "./pages/normalUser/cart/cartPage";
 
@@ -48,9 +49,11 @@ const router = createBrowserRouter([
       },
       {
         path: `/user/cart`,
-        element: <Cart />,
+
+        element: <Cart />
       },
-    ],
+    ]
+
   },
   {
     path: `/login`,
