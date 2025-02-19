@@ -89,19 +89,35 @@ const CategoryRatio = () => {
                 navigation={true}
                 allowTouchMove={false}
                 breakpoints={{
-                    '@0.00': {
+                    0: {
                         slidesPerView: 1,
-                        spaceBetween: 10,
+                        spaceBetween: 100,
                     },
-                    '@0.75': {
+                    320: {
                         slidesPerView: 2,
-                        spaceBetween: 20,
+                        spaceBetween: 15,
                     },
-                    '@1.00': {
+                    640: {
                         slidesPerView: 3,
-                        spaceBetween: 40,
+                        spaceBetween: 15,
                     },
-                    '@1.50': {
+                    700: {
+                        slidesPerView: 4,
+                        spaceBetween: 30,
+                    },
+                    980: {
+                        slidesPerView: 5,
+                        spaceBetween: 30,
+                    },
+                    1200: {
+                        slidesPerView: 6,
+                        spaceBetween: 30,
+                    },
+                    1300: {
+                        slidesPerView: 7,
+                        spaceBetween: 30,
+                    },
+                    1440: {
                         slidesPerView: 9,
                         spaceBetween: 15,
                     },

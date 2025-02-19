@@ -91,20 +91,28 @@ const ListProducts = () => {
                 navigation={true}
                 allowTouchMove={false}
                 breakpoints={{
-                    '@0.00': {
+                    0: {
                         slidesPerView: 1,
-                        spaceBetween: 10,
+                        spaceBetween: 20,
                     },
-                    '@0.75': {
+                    750: {
                         slidesPerView: 2,
                         spaceBetween: 20,
                     },
-                    '@1.00': {
+                    1000: {
                         slidesPerView: 3,
                         spaceBetween: 40,
                     },
-                    '@1.50': {
-                        slidesPerView: 7,
+                    1200: {
+                        slidesPerView: 4,
+                        spaceBetween: 15,
+                    },
+                    1400: {
+                        slidesPerView: 5,
+                        spaceBetween: 15,
+                    },
+                    1600: {
+                        slidesPerView: 6,
                         spaceBetween: 15,
                     },
                 }}
