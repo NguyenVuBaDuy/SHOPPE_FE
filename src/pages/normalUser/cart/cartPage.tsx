@@ -1,5 +1,5 @@
-import ProductsCartList from "./productsCartList";
-import Bill from "./bill";
+import ProductsCartList from "./components/productsCartList";
+import Bill from "./components/bill";
 import { faCreditCard, faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import { useReducer } from "react";
 import {
@@ -136,7 +136,7 @@ const reducer = (state: typeof initialState, action: ActionType) => {
                     : state.products.map((item) => item),
             };
         case "DELETE_ITEM":
-            console.log(state.products);
+            console.log(state.products)
             return {
                 ...state,
                 selectedItems: state.selectedItems.filter(
@@ -147,6 +147,7 @@ const reducer = (state: typeof initialState, action: ActionType) => {
                 ),
             };
         case "UPDATE_QUANTITY":
+            console.log(state.products)
             return {
                 ...state,
                 products: state.products.map((item) => {
@@ -179,7 +180,7 @@ const Cart = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     return (
-        <div className="flex h-full justify-center gap-[20px] bg-[#F2F5FF] pt-[30px] pb-[30px] ">
+        <div className="flex flex-col items-center xl:flex-row xl:items-start h-full justify-center gap-[20px] bg-[#F2F5FF] pt-[30px] pb-[30px] ">
             <ProductsCartList state={state} dispatch={dispatch} />
             <Bill state={state} dispatch={dispatch} payMethod={payMethod} shipMethod={shipMethod}/>
         </div>

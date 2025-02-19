@@ -6,7 +6,7 @@ import {
     PaymentMethodType,
     StateType,
     ShippingMethodType,
-} from "./types";
+} from "../types";
 
 const Bill = ({
     state,
@@ -29,7 +29,7 @@ const Bill = ({
     };
 
     return (
-        <div className="w-[400px] h-fit rounded-[0.5rem] p-[20px] shadow-md  bg-white">
+        <div className="min-w-[400px] w-[400px] h-fit rounded-[0.5rem] p-[20px] shadow-md  bg-white">
             <h2 className="text-[25px] pl-[10px] font-bold text-gray-800">
                 CART TOTAL
             </h2>
@@ -45,7 +45,7 @@ const Bill = ({
                                 {item.quantity}
                             </span>
                             <span className="w-[130px] text-end">
-                                {item.price * item.quantity}
+                                {(item.price * item.quantity).toLocaleString("vi-VN")}
                             </span>
                         </div>
                     );
@@ -244,7 +244,7 @@ const Bill = ({
                     </span>
                 </div>
             </div>
-            <button className="w-full h-[40px] bg-indigo-500 text-white font-bold text-[15px] rounded-[0.5rem] mt-[10px] hover:bg-indigo-600 transition-all duration-200">
+            <button className="w-full h-[40px] bg-[#454161] text-white font-bold text-[15px] rounded-[0.5rem] mt-[10px] hover:bg-[#302D43] transition-all duration-200">
                 Đặt hàng
             </button>
         </div>
