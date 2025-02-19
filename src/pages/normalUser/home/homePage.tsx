@@ -12,7 +12,7 @@ const HomePage = () => {
 
             <CarouselCustom />
 
-            <div className="max-w-[1440px] mx-auto overflow-hidden">
+            <div className="max-w-[1600px] mx-auto overflow-hidden">
                 <div className="mt-[100px] px-[80px] flex flex-col">
                     <div className="flex justify-between py-[10px]">
                         <div className="text-[30px] font-semibold ml-[20px]">Categories</div>
