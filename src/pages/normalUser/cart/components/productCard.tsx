@@ -33,7 +33,6 @@ const ProductCard = ({
                         className="w-4 h-4 appearance-none border-[2px] border-gray-200 rounded-sm hover:border-blue-300 cursor-pointer checked:bg-blue-300 checked:border-blue-300 transition-all duration-200"
                         checked={state.selectedItems.includes(item)}
                         onChange={() => {
-                            console.log(state.selectedItems);
                             state.selectedItems.includes(item)
                                 ? dispatch({
                                       type: "REMOVE_ITEM",

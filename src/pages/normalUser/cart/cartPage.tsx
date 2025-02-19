@@ -136,7 +136,6 @@ const reducer = (state: typeof initialState, action: ActionType) => {
                     : state.products.map((item) => item),
             };
         case "DELETE_ITEM":
-            console.log(state.products)
             return {
                 ...state,
                 selectedItems: state.selectedItems.filter(
@@ -147,7 +146,6 @@ const reducer = (state: typeof initialState, action: ActionType) => {
                 ),
             };
         case "UPDATE_QUANTITY":
-            console.log(state.products)
             return {
                 ...state,
                 products: state.products.map((item) => {
