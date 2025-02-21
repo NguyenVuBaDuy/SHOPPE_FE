@@ -1,8 +1,9 @@
 import { ActionType, StateType, DataType } from "../types";
-import { InputNumber } from "antd";
+import { InputNumber, Popover, Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 const ProductCard = ({
     item,
@@ -13,41 +14,66 @@ const ProductCard = ({
     state: StateType;
     dispatch: React.Dispatch<ActionType>;
 }) => {
-    
     const handleQuantityChange = (value: number | null) => {
         if (value !== null) {
-            item.quantity = value;
+            const updatedItem = {...item, quantity: value};
             dispatch({
                 type: "UPDATE_QUANTITY",
-                payload: item.quantity,
+                payload: updatedItem,   
             });
         }
     };
 
+    const [toggle, setToggle] = useState(false);
+
+    const handleToggle = () => {
+        setToggle(!toggle);
+    }
+
+    const content = (
+        <div className="flex gap-[5px]">
+            {item.variant.map((variant, key) => (
+                <button key={key} className={`bg-white border-[1px] ${item.variantChoice === variant ? 'border-[sky-400] text-sky-400' : 'border-gray-300 text-black'} px-[10px] py-[5px] rounded-md hover:border-sky-400 hover:text-sky-400 transition-all duration-200`}
+                    onClick={() => {
+                        const updatedItem = { ...item, variantChoice: variant };
+                        dispatch({
+                            type: "UPDATE_VARIANTCHOICE",
+                            payload: updatedItem,
+                        });
+                        handleToggle();
+                    }}
+                >
+                    {variant}
+                </button>
+            ))}
+        </div>
+    );
+
     return (
-        <tr className="max-h-[60px] h-[60px] border-b-[2px] border-t-[2px] border-gray-200">
-            <td>
+        <div className="w-full mt-[15px] rounded-[0.5rem] shadow-md grid grid-cols-[50px_600px_200px_180px_200px_70px] bg-white grid-rows-[100px] justify-center items-center">
+            <div className="flex justify-center items-center">
                 <label>
                     <input
                         type="checkbox"
                         className="w-4 h-4 appearance-none border-[2px] border-gray-200 rounded-sm hover:border-blue-300 cursor-pointer checked:bg-blue-300 checked:border-blue-300 transition-all duration-200"
                         checked={state.selectedItems.includes(item)}
                         onChange={() => {
+                            const updatedSelect = {store: item.store, item: item};
                             state.selectedItems.includes(item)
                                 ? dispatch({
                                       type: "REMOVE_ITEM",
-                                      payload: item,
+                                      payload: updatedSelect,
                                   })
                                 : dispatch({
                                       type: "SELECT_ITEM",
-                                      payload: item,
+                                      payload: updatedSelect,
                                   });
                         }}
                     />
                 </label>
-            </td>
-            <td className="text-gray-700 font-normal pl-[5px] overflow-hidden ">
-                <div className="flex items-center gap-[10px]">
+            </div>
+            <div className="text-gray-700 h-full flex items-center font-normal pl-[10px] overflow-hidden ">
+                <div className="flex items-center w-[400px] gap-[10px]">
                     <img
                         src="/images/product/1.jpg"
                         alt="product"
@@ -57,11 +83,33 @@ const ProductCard = ({
                         <span className="text-[#333]">{item.name}</span>
                     </a>
                 </div>
-            </td>
-            <td className="text-gray-700 font-normal pl-[5px] overflow-hidden ">
-                {item.price}
-            </td>
-            <td className="text-gray-700 font-normal pl-[5px] overflow-hidden ">
+                <div className="flex flex-col min-w-[200px] w-[200px]">
+                    <div className="flex items-center ">
+                        <span className="pr-[5px]">Variations:</span>
+                        <Popover
+                            content={content}
+                            title="Color:"
+                            trigger="click"
+                            placement="bottom"
+                            open={toggle}
+                            onOpenChange={handleToggle}
+                        >
+                            <Button className="text-red-200"
+                                    onClick={handleToggle}>Change</Button>
+                        </Popover>
+                    </div>
+                    <span>
+                        {"Color: "}
+                        {item.variantChoice === ""
+                            ? item.variant[0]
+                            : item.variantChoice}
+                    </span>
+                </div>
+            </div>
+            <div className="text-gray-700 font-normal pl-[10px] overflow-hidden ">
+                {item.price.toLocaleString("vi-VN")}
+            </div>
+            <div className="text-gray-700 font-normal pl-[10px] overflow-hidden ">
                 <div className="flex items-center gap-[2px]">
                     <button
                         className="flex items-center justify-center bg-[#6fa8dc] hover:bg-[#3d85c6] text-white w-[25px] h-[25px] rounded-[50%]"
@@ -72,7 +120,14 @@ const ProductCard = ({
                     >
                         <FontAwesomeIcon icon={faMinus} />
                     </button>
-                    <InputNumber min={1} max={10000} value={item.quantity} controls={false} onChange={handleQuantityChange} style={{width: "80px"}}/>
+                    <InputNumber
+                        min={1}
+                        max={10000}
+                        value={item.quantity}
+                        controls={false}
+                        onChange={handleQuantityChange}
+                        style={{ width: "80px" }}
+                    />
                     <button
                         className="flex items-center justify-center bg-[#6fa8dc] hover:bg-[#3d85c6] text-white w-[25px] h-[25px] rounded-[50%]"
                         onClick={handleQuantityChange.bind(
@@ -83,11 +138,11 @@ const ProductCard = ({
                         <FontAwesomeIcon icon={faPlus} />
                     </button>
                 </div>
-            </td>
-            <td className="text-gray-700 font-normal pl-[10px] overflow-hidden ">
+            </div>
+            <div className="text-[#ff390a] font-normal pl-[10px] overflow-hidden ">
                 {(item.price * item.quantity).toLocaleString("vi-VN")}
-            </td>
-            <td className="text-gray-400 text-left align-middle pl-[10px] w-[30px]">
+            </div>
+            <div className="text-gray-400 text-left align-middle pl-[10px] w-[30px]">
                 <div className="w-[30px] h-[30px] flex items-center justify-center bg-gray-200 rounded-md hover:bg-red-200 hover:text-red-500 cursor-pointer transition-all duration-200">
                     <DeleteOutlined
                         className="w-full h-full flex items-center justify-center cursor-pointer"
@@ -99,8 +154,8 @@ const ProductCard = ({
                         }}
                     />
                 </div>
-            </td>
-        </tr>
+            </div>
+        </div>
     );
 };
 

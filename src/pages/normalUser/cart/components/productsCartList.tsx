@@ -1,7 +1,5 @@
 import { StateType, ActionType } from "../types";
 import ProductCard from "./productCard";
-import { Pagination } from "antd";
-import { useEffect, useState } from "react";
 
 const ProductsCartList = ({
     state,
@@ -10,84 +8,83 @@ const ProductsCartList = ({
     state: StateType;
     dispatch: React.Dispatch<ActionType>;
 }) => {
-    const pageSize = 10;
-    const [currentPage, setCurrentPage] = useState<number>(1);
-    const [currentData, setCurrentData] = useState<typeof state.products>([]);
-
-    useEffect(() => {
-        const start = (currentPage - 1) * pageSize;
-        const end = start + pageSize;
-        setCurrentData(
-            state.products.slice(
-                start,
-                end >= state.products.length ? state.products.length : end
-            )
-        );
-    }, [currentPage, state.products]);
 
     return (
-        <div className="w-[1000px] flex flex-col justify-between items-center h-[650px] rounded-[0.5rem] bg-white p-[20px]">
-            <table className="h-fit w-full">
-                <thead className="h-[35px] items-center">
-                    <tr>
-                        <th className="w-[30px]">
-                            <label className="flex items-center">
-                                <input
-                                    type="checkbox"
-                                    className="w-4 h-4 appearance-none border-[2px] border-gray-200 rounded-sm hover:border-blue-300 cursor-pointer checked:bg-blue-300 checked:border-blue-300 transition-all duration-200r"
-                                    checked={
-                                        state.selectedItems.length ===
-                                            state.products.length &&
-                                        state.selectAll
-                                    }
-                                    onChange={() => {
-                                        dispatch({
-                                            type: "SELECT_ALL",
-                                        });
-                                    }}
-                                />
-                            </label>
-                        </th>
-                        <th className="text-gray-700 text-left border-r-[2px] border-gray-200 align-middle pl-[5px] max-w-[440px] w-[440px]">
-                            Product
-                        </th>
-                        <th className="text-gray-700 text-left border-r-[2px] border-gray-200 align-middle pl-[5px] w-[150px]">
-                            Price
-                        </th>
-                        <th className="text-gray-700 text-left border-r-[2px] border-gray-200 align-middle pl-[5px] w-[150px]">
-                            Quantity
-                        </th>
-                        <th className="text-gray-700 text-left border-r-[2px] border-gray-200 align-middle pl-[10px] w-[160px]">
-                            Total
-                        </th>
-                        <th className="text-gray-700 text-left align-middle pl-[10px] w-[30px]">
-                            Delete
-                        </th>
-                    </tr>
-                </thead>
-                <tbody className="">
-                    {currentData.map((item, key) => {
-                        return (
-                            <ProductCard
-                                key={key}
-                                item={item}
-                                state={state}
-                                dispatch={dispatch}
+        <div className="w-fit flex flex-col justify-between items-center pt-[20px] pb-[20px] h-full">
+            <div className="flex justify-center items-center h-fit bg-white w-full rounded-[0.5rem] shadow-md p-[20px]">
+                <div className="w-full grid grid-cols-[50px_600px_200px_180px_200px_70px] bg-white justify-center items-center h-[35px]">
+                    <div className=" flex justify-center items-center w-[50px]">
+                        <label className="flex items-center">
+                            <input
+                                type="checkbox"
+                                className="w-4 h-4 appearance-none border-[2px] border-gray-200 rounded-sm hover:border-blue-300 cursor-pointer checked:bg-blue-300 checked:border-blue-300 transition-all duration-200r"
+                                checked={
+                                    state.selectedItems.length ===
+                                        state.products.length && state.selectAll
+                                }
+                                onChange={() => {
+                                    dispatch({
+                                        type: "SELECT_ALL",
+                                    });
+                                }}
                             />
-                        );
-                    })}
-                </tbody>
-            </table>
-            <div className="mt-[10px]">
-                <Pagination
-                    defaultCurrent={1}
-                    total={state.products.length}
-                    pageSize={pageSize}
-                    showQuickJumper
-                    showSizeChanger={false}
-                    onChange={(page) => setCurrentPage(page)}
-                />
+                        </label>
+                    </div>
+                    <div className="text-gray-700 text-left border-r-[2px] border-gray-200 pl-[10px] w-[600px]">
+                        Product
+                    </div>
+                    <div className="text-gray-700 text-left border-r-[2px] border-gray-200 pl-[10px] w-[200px]">
+                        Price
+                    </div>
+                    <div className="text-gray-700 text-left border-r-[2px] border-gray-200 pl-[10px] w-[180px]">
+                        Quantity
+                    </div>
+                    <div className="text-gray-700 text-left border-r-[2px] border-gray-200 pl-[10px] w-[200px]">
+                        Total
+                    </div>
+                    <div className="text-gray-700 text-left align-middle pl-[10px] w-[90px]">
+                        Delete
+                    </div>
+                </div>
             </div>
+
+            {Array.from(state.dataToPrint.entries()).map(([store, products]) => (
+                <div key={store} className="flex flex-col w-full bg-white rounded-[0.5rem] shadow-md p-[20px] mt-[20px]">
+                    <div className="flex w-full border-b-[2px] border-gray-200 justify-center items-center h-[35px]">
+                        <label className="flex w-[50px] justify-center items-center">
+                            <input
+                                type="checkbox"
+                                className="w-4 h-4 appearance-none border-[2px] border-gray-200 rounded-sm hover:border-blue-300 cursor-pointer checked:bg-blue-300 checked:border-blue-300 transition-all duration-200"
+                                checked={state.selectedStore.includes(store)}
+                                onChange={() => {
+                                    const newSelectedItems = {store: store, products: products};
+                                    state.selectedStore.includes(store)
+                                        ? dispatch({
+                                              type: "REMOVE_STORE",
+                                              payload: newSelectedItems,
+                                          })
+                                        : dispatch({
+                                              type: "SELECT_STORE",
+                                              payload: newSelectedItems,
+                                          });
+                                }}
+                            />
+                        </label>
+                        <div className="w-full col-span-5 h-full pl-[10px] flex items-center">
+                            <a href="#">{store}</a>
+                        </div>
+                    </div>
+                    {products.map((item) => (
+                        <ProductCard
+                            key={item.id}
+                            item={item}
+                            state={state}
+                            dispatch={dispatch}
+                        />
+                    ))}
+                    
+                </div>
+            ))}
         </div>
     );
 };
