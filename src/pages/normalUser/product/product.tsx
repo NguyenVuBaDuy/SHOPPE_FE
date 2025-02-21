@@ -128,7 +128,7 @@ const Product = () => {
     }, [currentPage]);
 
     return (
-        <div className='w-full h-full flex justify-center p-[30px] bg-gray-100 gap-[10px]'>
+        <div className='w-full h-full flex justify-center p-[30px] bg-[#F2F5FF] gap-[10px]'>
             <CheckboxList items={items}/>
             <div className='w-full h-full flex flex-col items-center gap-[10px]'>
               <div className='w-fit h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 bg-white rounded-[0.5rem] '>

@@ -5,14 +5,19 @@ export type DataType = {
     name: string;
     price: number;
     quantity: number;
+    store: string;
+    variant: string[];
+    variantChoice: string;
 };
 
 export type StateType = {
     selectAll: boolean;
     selectedItems: DataType[];
+    selectedStore: string[];
     products: DataType[];
     shippingMethod: ShippingMethodType;
     paymentMethod: PaymentMethodType;
+    dataToPrint: Map<string, DataType[]>;
 };
 
 export type ActionType = {
