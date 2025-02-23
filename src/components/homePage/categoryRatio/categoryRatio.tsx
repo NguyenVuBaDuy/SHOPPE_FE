@@ -109,17 +109,13 @@ const CategoryRatio = () => {
                         slidesPerView: 5,
                         spaceBetween: 30,
                     },
-                    1200: {
+                    1150: {
                         slidesPerView: 6,
                         spaceBetween: 30,
                     },
-                    1300: {
+                    1400: {
                         slidesPerView: 7,
                         spaceBetween: 30,
-                    },
-                    1440: {
-                        slidesPerView: 9,
-                        spaceBetween: 15,
                     },
                 }}
                 modules={[Navigation]}
