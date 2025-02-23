@@ -86,7 +86,7 @@ const CheckboxList = ({ items }: CheckboxListProps) => {
     }
 
     return (
-        <div className='min-w-[360px] h-full rounded-[0.25rem] bg-white p-[20px]'>
+        <div className='min-w-[300px] h-full rounded-[0.25rem] bg-white p-[20px]'>
             <div className="w-full h-[50px] flex justify-between items-center">
                     <span className='text-[18px] font-bold font-serifs '>PRODUCT CATEGORIES</span>
                     <button onClick={handleRemoveChecks} className='w-[30px] h-[30px] flec items-center text-red rounded-[0.25rem] cursor-pointer hover:bg-gray-200 transition-transform duration-200'>

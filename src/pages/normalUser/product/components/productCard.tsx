@@ -1,31 +1,45 @@
-import { Rate } from 'antd';
+import { Rate } from "antd";
 
-type data = {
-    id?: number,
-    name?: string,
-    price?: number,
-    solded?: number,
-    rate?: number,
-    image?: string,
+interface data {
+    image: string;
+    name: string;
+    rating: number;
+    price: number;
+    sold: number;
 }
 
-const ProductCard = ({data} : {data: data}) => {
+const ProductCard = ({ data }: { data: data }) => {
     return (
-        <div className="flex flex-col w-[200px] h-[280px] border-1 border-gray-300 bg-white">
-            <div className='flex justify-center items-center w-full min-h-[180px] bg-gray-200'>
-                <a>
-                    Image
-                </a>
+        <div className="flex flex-col p-[10px] w-[210px] h-fit shadow-sm">
+            <div className="w-full h-[150px] flex justify-center">
+                <img src={data.image} alt="" className="w-[150px] h-full" />
             </div>
-                <div className='flex flex-col w-full h-full pr-[15px] pl-[15px] pt-[5px] pb-[5px]'>
-                <span className='min-h-[30px] h-full leading-[1]'>{data.name}</span>
-                <Rate disabled defaultValue={2} style={{ fontSize: 8 }}/>
-                <div className='flex items-center justify-between min-h-[42px]'>
-                    <span>Price</span>
-                    <span>Solded</span>
+            <div className="px-[20px]">
+                <div className="h-[54px] text-left text-[16px] line-clamp-2 text-ellipsis overflow-hidden">
+                    {data.name}
+                </div>
+                <div className="flex items-center">
+                    <Rate
+                        allowHalf
+                        disabled
+                        defaultValue={data.rating}
+                        style={{ fontSize: "12px" }}
+                    />
+                    <div className="text-[12px] ml-[10px] text-[#ccc] mt-[4px]">
+                        {data.rating}
+                    </div>
+                </div>
+                <div className="flex items-center justify-between">
+                    <div className="text-[#D51243]">${data.price}</div>
+                    <div className="text-[13px] font-normal">
+                        Sold{" "}
+                        {data.sold < 1000
+                            ? data.sold
+                            : `${(data.sold / 1000).toFixed(1)}k`}
+                    </div>
                 </div>
             </div>
         </div>
     );
-}
-export default ProductCard
+};
+export default ProductCard;
