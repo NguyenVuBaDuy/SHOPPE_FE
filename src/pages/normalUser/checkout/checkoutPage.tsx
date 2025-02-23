@@ -10,9 +10,9 @@ import {
     ShippingMethodType,
     PaymentMethodType,
 } from "../cart/types";
-import Bill from "../cart/bill";
 import { EditOutlined } from "@ant-design/icons";
 import ModalAddress from "./modalAddress";
+import Bill from "../cart/components/bill";
 
 const data: DataType[] = [
     {
