@@ -28,7 +28,7 @@ const CheckboxList = ({ items }: CheckboxListProps) => {
     const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
     const [toggleExpand, setToggleExpand] = useState<Record<string, boolean>>({});
 
-    const handleCheck = (event: React.MouseEvent<HTMLInputElement>, key: string, from: string) => {
+    const handleCheck = (event: React.ChangeEvent<HTMLInputElement>, key: string, from: string) => {
         setCheckedItems((prev) => {
             const newCheckedItems = {...prev, [key]: !prev[key]};
             if (!prev[from]) {
