@@ -205,8 +205,8 @@ const Header = () => {
                     onClick={() => navigate('/')}
                 />
                 <div className=" ml-[80px] flex flex-col w-full justify-around">
-                    <div className="flex w-full justify-start">
-                        <div className="flex w-[80%]">
+                    <div className="flex w-full justify-between">
+                        <div className="flex w-[70%]">
 
                             <Dropdown menu={{ items: allCategories }}>
                                 <div className="flex text-[#fff] bg-[#2BBEF9] px-[30px] py-[10px] rounded-[50px] cursor-pointer items-center" >
@@ -218,7 +218,7 @@ const Header = () => {
                                 </div>
                             </Dropdown>
 
-                            <div className="custom-input w-[50%] ml-[30px] h-full">
+                            <div className="custom-input w-[60%] ml-[30px] h-full">
                                 <Input
                                     suffix={<SearchOutlined />}
                                     className="custom-input"
@@ -226,7 +226,7 @@ const Header = () => {
                                 />
                             </div>
                         </div>
-                        <div className="flex items-center">
+                        <div className="flex items-center justify-end">
                             <Dropdown
                                 menu={{ items: items }}
                                 trigger={["hover"]}
