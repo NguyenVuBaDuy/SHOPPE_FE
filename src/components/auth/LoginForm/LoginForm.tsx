@@ -71,6 +71,7 @@ export default function LoginForm() {
           <Input placeholder="Email" />
         </Form.Item>
 
+
         <Form.Item
           label="Password"
           name="password"
@@ -83,7 +84,7 @@ export default function LoginForm() {
             },
           ]}
         >
-          <Input.Password />
+          <Input.Password placeholder="Enter your password" />
         </Form.Item>
         <div
           style={{
@@ -116,10 +117,8 @@ export default function LoginForm() {
       <div style={{ width: "80%", paddingBottom: "30px" }}>
         <Link to={googleUrl}>
           <Button className="google-btn">
-            <span className="google-icon">
-              <FcGoogle fontSize={30} />
-            </span>
-            <span>Continue with google</span>
+            <FcGoogle fontSize={30} />
+            <span style={{ marginLeft: '8px' }}>Continue with google</span>
           </Button>
         </Link>
       </div>

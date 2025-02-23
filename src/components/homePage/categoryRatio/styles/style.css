@@ -1,0 +1,36 @@
+/* Đảm bảo nút điều hướng không bị che khuất */
+.category-ratio .swiper-button-prev,
+.category-ratio .swiper-button-next {
+    position: absolute;
+    z-index: 9999 !important;
+    color: black;
+    background-color: #fff;
+    top: 22px;
+    width: 100px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+
+}
+
+/* Đẩy nút ra ngoài Swiper */
+.category-ratio .swiper-button-prev {
+    left: -114px;
+    justify-content: flex-end;
+    padding-right: 6px;
+}
+
+.category-ratio .swiper-button-next {
+    right: -114px;
+    justify-content: flex-start;
+    padding-left: 6px;
+}
+
+.category-ratio .swiper {
+    position: relative;
+    overflow: visible;
+}
+
+.category-ratio .swiper-button-disabled {
+    opacity: 1 !important;
+}
