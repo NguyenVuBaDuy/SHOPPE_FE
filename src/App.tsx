@@ -11,6 +11,9 @@ import LoginPage from "./pages/normalUser/login/loginPage";
 import RegisterPage from "./pages/normalUser/register/registerPage";
 
 
+import Cart from "./pages/normalUser/cart/cartPage";
+
+
 const router = createBrowserRouter([
   {
     path: `/`,
@@ -44,7 +47,13 @@ const router = createBrowserRouter([
         path: `/user/profile`,
         element: <ProfilePage />,
       },
-    ],
+      {
+        path: `/user/cart`,
+
+        element: <Cart />
+      },
+    ]
+
   },
   {
     path: `/login`,
