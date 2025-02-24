@@ -447,22 +447,24 @@ const Product = () => {
     }, [currentPage]);
 
     return (
-        <div className="w-full h-full flex justify-center p-[30px] bg-[#F2F5FF] gap-[10px]">
-            <CheckboxList items={items} />
-            <div className="w-full h-full flex flex-col items-center gap-[10px]">
-                <div className="w-fit h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 bg-white rounded-[0.5rem] ">
-                    {currentData.map((product) => (
-                        <ProductCard data={product} />
-                    ))}
+        <div className="w-full h-full flex justify-center p-[30px] bg-white gap-[10px]">
+            <div className="max-w-[1240px] flex justify-center">
+                <CheckboxList items={items} />
+                <div className="w-full h-full flex flex-col items-center gap-[10px]">
+                    <div className="w-fit h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 bg-white rounded-[0.5rem] ">
+                        {currentData.map((product) => (
+                            <ProductCard data={product} />
+                        ))}
+                    </div>
+                    <Pagination
+                        defaultCurrent={1}
+                        total={data.length}
+                        pageSize={pageSize}
+                        showQuickJumper
+                        showSizeChanger={false}
+                        onChange={(page) => setCurrentPage(page)}
+                    />
                 </div>
-                <Pagination
-                    defaultCurrent={1}
-                    total={data.length}
-                    pageSize={pageSize}
-                    showQuickJumper
-                    showSizeChanger={false}
-                    onChange={(page) => setCurrentPage(page)}
-                />
             </div>
         </div>
     );
